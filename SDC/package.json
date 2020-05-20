@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed" : "database stuff"
+    "seed": "database stuff"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Engelagel/Q-A/issues"
   },
-  "homepage": "https://github.com/Engelagel/Q-A#readme"
+  "homepage": "https://github.com/Engelagel/Q-A#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15",
+    "pg": "^8.2.1"
+  }
 }
