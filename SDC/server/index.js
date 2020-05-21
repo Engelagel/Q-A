@@ -1,45 +1,36 @@
-const expres = require('express');
+const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 3004;
 
-app.get('/qa/:product_id', (req, res) => {
-  res.send('getall')
-  if (err) {
-    console.log(err);
-  }
+// app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.json());
+// app.use(cors());
+
+
+app.get('/qa', (req, res) => {
+  res.status(200).send('GET all')
 })
 
-app.get('/', (req, res) => {
-  res.send('get1')
-  if (err) {
-    console.log(err);
-  }
+app.get('/qa', (req, res) => {
+  res.status(200).send('GET one')
 })
 
-
-app.post('/', (req, res) => {
-  res.send('post')
-  if (err) {
-    console.log(err);
-  }
+app.post('/qa', (req, res) => {
+  res.status(200).send('POST')
 })
 
 
-app.put('/', (req, res) => {
-  res.send('put')
-  if (err) {
-    console.log(err);
-  }
+app.put('/qa', (req, res) => {
+  res.status(200).send('PUT')
 })
 
 
-app.delete('/', (req, res) => {
-  res.send('delete')
-  if (err) {
-    console.log(err);
-  }
+app.delete('/qa', (req, res) => {
+  res.status(200).send('DELETE')
 })
       
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`)
+});
