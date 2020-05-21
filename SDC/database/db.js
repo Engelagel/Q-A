@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/sdc');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
+
 let questionSchema = new mongoose.Schema({
     product_id: Number,
     results: [{
