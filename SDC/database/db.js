@@ -37,5 +37,5 @@ const Photo = mongoose.model('photo', photoSchema);
 module.exports = {
   Q,
   A,
-  photo,
+  Photo,
 };
