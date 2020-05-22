@@ -32,7 +32,7 @@ let photoSchema = new mongoose.Schema({
 
 const Q = mongoose.model('Q', qSchema);
 const A = mongoose.model('A', aSchema);
-const photo = mongoose.model('photo', photoSchema);
+const Photo = mongoose.model('photo', photoSchema);
 
 module.exports = {
   Q,
