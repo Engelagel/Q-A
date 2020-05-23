@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon ./server/index.js",
-    "questionSeed": "node database/seedstuff/questionSeed.js",
-    "answerSeed": " node database/seedstuff/answerSeed.js",
-    "photoSeed": "node database/seedstuff/photoSeed.js"
+    "seed": "node database/seedstuff/masterSeed.js"
   },
   "repository": {
     "type": "git",

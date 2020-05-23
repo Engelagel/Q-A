@@ -1,10 +1,9 @@
 const faker = require('faker');
-const db = require('../db.js');
-const Promise = require('bluebird');
+const { PerformanceObserver, performance} = require('perf_hooks');
 
 let answers = [];
 
-const generateAnswers = new Promise((resolve, reject) => {
+const generateAnswers = () => {
   let M = 100000
   let n = 0;
   while (n < M) {
@@ -20,15 +19,15 @@ const generateAnswers = new Promise((resolve, reject) => {
     })
     n++;
   }
-})
+}
 
 
-const insertAnswer = () => {
-  db.A.insertMany(answers, (err, docs) => {
-    console.log(err || docs.length + 'answers saved')
-  });
-};
+const wrappedA = performance.timerify(generateAnswers);
 
-insertAnswer();
+const obs = new PerformanceObserver((list) => {
+  console.log(list.getEntries()[0].duration);
+  obs.disconnect();
+});
+obs.observe({ entryTypes: ['function'] });
 
-module.exports = insertAnswer;
+wrapped();
