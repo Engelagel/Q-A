@@ -1,10 +1,9 @@
 node_modules
-qdata1.json
-qdata2.json
-qdata3.json
-adata1.json
-adata2.json
-adata3.json
-pdata1.json
-pdata2.json
-pdata3.json
+qdatan1.json
+adatan1.json
+newrelic_agent.log
+
+# fec
+dist/bundle.js
+alex_fec_key.pem
+greenfield.pem
