@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon ./server/index.js",
-    "seed": "node database/seedstuff/masterSeed.js"
+    "seedQ": "node database/seedstuff/questionSeed.js",
+    "seedA": "node database/seedstuff/answerSeed.js",
+    "seedMQ": "mongoimport --db=sdc --collection=question --type=json  --file=C:/GitHub/Q-A/SDC/database/seedstuff/qdatan1.json",
+    "seedMA": "mongoimport --db=sdc --collection=answer --type=json  --file=C:/GitHub/Q-A/SDC/database/seedstuff/adatan1.json"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.9.15",
+    "newrelic": "^6.8.0",
     "nodemon": "^2.0.4"
   }
 }
