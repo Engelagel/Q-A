@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const {Q, A, Photo} = require('../database/db.js')
+const {Q, A} = require('../database/db.js')
 const faker = require('faker')
 require('newrelic')
 const port = 3004;
@@ -14,35 +14,33 @@ app.use(cors());
 app.use(express.static(__dirname + '/../fec/dist'))
 
 //get questions by product, get answers by question
-app.get('/qa/:product_id', async (req, res) => { 
+app.get('/qa/:product_id', async (req, res) => {
   try {
   let resultQ = await Q.find({product_id: req.params.product_id})
   for (let i = 0; i < resultQ.length; i++) {
     let resultA = await A.find({question_id: resultQ[i].question_id})
-
       for (j = 0; j < resultA.length; j++) {
         let answerId = resultA[j].answer_id;
-
-        //refactor for photos
-        resultQ[i].answers[answerId] = {
+        resultQ[i].answers[answerId]= {
             id: answerId,
             body: resultA[j].body,
             date: resultA[j].date,
             answerer_name: resultA[j].answerer_name,
             helpfulness: resultA[j].helpfulness,
             photos: resultA[j].photos
-        } 
+        }
       }
 
-      
-    let result = { 
-      product_id: req.params.product_id, 
-      results: resultQ, 
-    }
 
+    let result = {
+      product_id: req.params.product_id,
+      results: resultQ,
+    }
+console.log(result)
       res.status(200).send(result);
   }
 } catch (err) {
+  console.log(err)
   res.status(404).send(err);
 }
 })
@@ -52,7 +50,7 @@ app.get('/qa/:question_id/answers', async (req, res) => {
   try {
     let resultA = await A.find({question_id: req.params.question_id})
       for (let i = 0; i < resultA.length; i++) {
-    
+
         let result = {
           question_id: resultA[i].question_id,
           page: 0,
@@ -62,7 +60,7 @@ app.get('/qa/:question_id/answers', async (req, res) => {
 
         res.status(200).send(result)
       }
-      
+
   } catch (err) {
     console.log(err)
     res.status(404).send(err)
@@ -149,7 +147,7 @@ app.put('/qa/answer/:answer_id/report', (req, res) => {
     res.status(204).send(data)
   })
 })
-      
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 });

@@ -10,8 +10,10 @@ let qSchema = new mongoose.Schema({
   question_body: String,
   question_date: Date,
   asker_name: String,
+  asker_email: String,
   question_helpfulness: Number,
   reported: Number,
+  answers: {},
 }, {collection: 'question'});
 
 let aSchema = new mongoose.Schema({
@@ -20,31 +22,16 @@ let aSchema = new mongoose.Schema({
   body: String,
   date: Date,
   answerer_name: String,
+  answerer_email: String,
   helpfulness: Number,
   reported: Number,
   photos: [Number]
 }, {collection: 'answer'})
 
-let photoSchema = new mongoose.Schema({
-  id: Number,
-  url: String,
-}, {collection: 'photo'})
-
 const Q = mongoose.model('Q', qSchema, 'question');
 const A = mongoose.model('A', aSchema);
-const Photo = mongoose.model('photo', photoSchema);
-
-// let Question = new mongoose.Schema({
-//   url: String,
-//   text: String,
-//   id: Number
-// })
-
-// const question = mongoose.model('question', );
-
 
 module.exports = {
   Q,
   A,
-  Photo,
 };
