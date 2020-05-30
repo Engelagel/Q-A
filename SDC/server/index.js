@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const {Q, A, Photo} = require('../database/db.js')
 const faker = require('faker')
+require('newrelic')
 const port = 3004;
 
 app.use(bodyParser.urlencoded({extended: false}));
