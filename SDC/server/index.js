@@ -36,7 +36,6 @@ app.get('/qa/:product_id', async (req, res) => {
       product_id: req.params.product_id,
       results: resultQ,
     }
-console.log(result)
       res.status(200).send(result);
   }
 } catch (err) {
