@@ -2,6 +2,7 @@ node_modules
 qdatan1.json
 adatan1.json
 newrelic_agent.log
+nat_sdc10.pem
 nat_sdc.pem
 
 # fec

@@ -1,20 +1,21 @@
+require('newrelic')
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const {Q, A} = require('../database/db.js')
 const faker = require('faker')
-require('newrelic')
 const port = 3004;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static(__dirname + '/../fec/dist'))
+// app.use(express.static(__dirname + '/../fec/dist'))
 
 //get questions by product, get answers by question
 app.get('/qa/:product_id', async (req, res) => {
+  console.log('get test')
   try {
   let resultQ = await Q.find({product_id: req.params.product_id})
   for (let i = 0; i < resultQ.length; i++) {
@@ -22,15 +23,14 @@ app.get('/qa/:product_id', async (req, res) => {
       for (j = 0; j < resultA.length; j++) {
         let answerId = resultA[j].answer_id;
         resultQ[i].answers[answerId]= {
-            id: answerId,
-            body: resultA[j].body,
-            date: resultA[j].date,
-            answerer_name: resultA[j].answerer_name,
-            helpfulness: resultA[j].helpfulness,
-            photos: resultA[j].photos
+          id: answerId,
+          body: resultA[j].body,
+          date: resultA[j].date,
+          answerer_name: resultA[j].answerer_name,
+          helpfulness: resultA[j].helpfulness,
+          photos: resultA[j].photos
         }
       }
-
 
     let result = {
       product_id: req.params.product_id,
@@ -39,7 +39,6 @@ app.get('/qa/:product_id', async (req, res) => {
       res.status(200).send(result);
   }
 } catch (err) {
-  console.log(err)
   res.status(404).send(err);
 }
 })
@@ -59,10 +58,14 @@ app.get('/qa/:question_id/answers', async (req, res) => {
 
         res.status(200).send(result)
       }
-
-  } catch (err) {
-    console.log(err)
-    res.status(404).send(err)
+      // if (error) {
+      //   console.l
+      //   console.log(err)
+      // }
+  } 
+  catch (error) {
+    // console.log(error)
+    res.status(404).send(error)
   }
 })
 
@@ -84,6 +87,10 @@ app.post('/qa/:product_id', (req, res) => {
   })
   newQuestion.save()
   res.status(201).send('created')
+
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 // //adds an answer to a question
@@ -101,6 +108,11 @@ app.post('/qa/:question_id/answers', (req, res) => {
   })
   newAnswer.save();
   res.status(201).send('created')
+
+  
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 app.put('/qa/question/:question_id/helpful', (req, res) => {
@@ -112,6 +124,11 @@ app.put('/qa/question/:question_id/helpful', (req, res) => {
     }
     res.status(204).send(data)
   })
+
+  
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 app.put('/qa/question/:question_id/report', (req, res) => {
@@ -123,6 +140,10 @@ app.put('/qa/question/:question_id/report', (req, res) => {
     }
     res.status(204).send(data)
   })
+  
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 app.put('/qa/answer/:answer_id/helpful', (req, res) => {
@@ -134,6 +155,11 @@ app.put('/qa/answer/:answer_id/helpful', (req, res) => {
     }
     res.status(204).send(data)
   })
+
+  
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 app.put('/qa/answer/:answer_id/report', (req, res) => {
@@ -145,6 +171,11 @@ app.put('/qa/answer/:answer_id/report', (req, res) => {
     }
     res.status(204).send(data)
   })
+
+  
+  if (err) {
+    res.status(404).send(err)
+  }
 })
 
 app.listen(port, () => {
