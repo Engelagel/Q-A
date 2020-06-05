@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const {Q, A} = require('../database/db.js')
 const faker = require('faker')
+const {redisGetQuestion} = require('./redis.js')
 const port = 3004;
 
 app.use(bodyParser.urlencoded({extended: false}));

@@ -26,7 +26,7 @@ const putAReport = "http://localhost:3004/qa/answer/9999995/report"
 export default () => {
   let res = http.put(putQHelpful);
   const result = check(res, {
-    "is status 201": (r) => r.status == 201
+    "is status 204": (r) => r.status == 204
   });
   errorRate.add(!result);
   sleep(1)

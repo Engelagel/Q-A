@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "test": "k6 run test.js",
+    "test": "k6 run test-get.js",
     "server": "nodemon ./server/index.js",
     "seedQ": "node database/seedstuff/questionSeed.js",
     "seedA": "node database/seedstuff/answerSeed.js",
@@ -30,6 +30,8 @@
     "k6": "0.0.0",
     "mongoose": "^5.9.15",
     "newrelic": "^6.8.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "redis": "^3.0.2",
+    "redis-server": "^1.2.2"
   }
 }
