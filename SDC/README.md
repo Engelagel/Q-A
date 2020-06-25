@@ -48,11 +48,14 @@ Pre-Deployment Testing (K6):
  Without indexing
   10vus     17.19s,
   100 vus   57.89s,
-  1000 vus  1m
+  1000 vus  1m+
   
+
+  <img src='./k6Test10-16ms.jpg'>
+
   With indexing
-   10vus     3.98ms,
-   100 vus   1m+,
+   10vus     5.5ms,
+   100 vus   16.41ms,
    1000 vus  1m+
     
     
