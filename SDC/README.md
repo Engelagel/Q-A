@@ -43,6 +43,8 @@ Overall records total to 60 million
 
 Pre-Deployment Testing (K6):
  
+ <img src='SDC/k6Test10-17s.jpg'>
+
  Without indexing
   10vus     17.19s,
   100 vus   57.89s,

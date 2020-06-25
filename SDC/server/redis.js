@@ -6,6 +6,13 @@ const client = redis.createClient({host: '127.0.0.1', port: 6379});
 client.on('error', (err) => console.log(err));
 
 
+exports.redisTest = (req, res) => {
+  client.get((err, result) => {
+    res.send('getTest')
+  })
+}
+
+//refactor to make it work. 
 exports.redisGetQuestions = (req, res) => {
   client.get(req.params.product_id, async (err, result) => {
     if (result) {
