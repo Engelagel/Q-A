@@ -40,19 +40,18 @@ Overall records total to 60 million
 - 10 million answers
 - 40 million photos (4/answer)
 
+
 Pre-Deployment Testing (K6):
  
  Without indexing
-  Load:     Result:
   10vus     17.19s,
-  100 vus   57.89s
+  100 vus   57.89s,
   1000 vus  1m
   
   With indexing
-    Load:     Result:
-    10vus     3.98ms,
-    100 vus   1m+
-    1000 vus  1m+
+   10vus     3.98ms,
+   100 vus   1m+,
+   1000 vus  1m+
     
     
     Future Optimizations:
